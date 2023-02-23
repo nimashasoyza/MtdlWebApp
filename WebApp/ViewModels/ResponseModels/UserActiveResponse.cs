@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string UserName { get; set; }
-        public int IsActiveUser { get; set; }
+        //public int IsActiveUser { get; set; }
     }
 }

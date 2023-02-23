@@ -130,9 +130,20 @@ namespace WebApp.Services
             return user;
         }
 
-        public List<int> GetNewUsers()
+        public List<UserActiveResponse> GetNewUsers()
         {
-            return _context.Users.Where(i => i.RoleId != (int)UserRole.Admin && !i.IsActive).Select(i => i.Id).ToList();
+            return _context.Users.Where(i => i.RoleId != (int)UserRole.Admin && !i.IsActive).Select(i => new UserActiveResponse { Id = i.Id, UserName = i.UserName}).ToList();
+        }
+
+        public void ActiveNewUsers(List<int> ids)
+        {
+            var users = _context.Users.Where(i => ids.Contains(i.Id)).ToList();
+            foreach (var user in users)
+            {
+                user.IsActive = true;
+            }
+            _context.Users.UpdateRange(users);
+            _context.SaveChanges();
         }
 
         private UserRole GetUserRoleEnum(string description)
@@ -153,7 +164,5 @@ namespace WebApp.Services
             var descriptionAttributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return descriptionAttributes.Length > 0 ? descriptionAttributes[0].Description : enumValue.ToString();
         }
-
-        
     }
 }

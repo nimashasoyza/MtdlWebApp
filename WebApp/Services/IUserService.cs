@@ -12,6 +12,7 @@ namespace WebApp.Services
         void Register(UserRequest model);
         void Update(int id, UserRequest model);
         void Delete(int id);
-        List<int> GetNewUsers();
+        List<UserActiveResponse> GetNewUsers();
+        void ActiveNewUsers(List<int> ids);
     }
 }

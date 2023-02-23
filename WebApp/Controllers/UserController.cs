@@ -65,5 +65,12 @@ namespace WebApp.Controllers
             var Ids = _userService.GetNewUsers();
             return Json(Ids);
         }
+
+        [HttpGet]
+        public IActionResult ActiveNewUsers()
+        {
+            userService.ActiveNewUsers();
+            return Json(new { message = "User activate successfully" });
+        }
     }
 }
