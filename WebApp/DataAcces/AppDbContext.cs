@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.DataAcces.Configurations;
-using WebApp.DataAcces.Models;
+using WebApp.DataAcces.Entities;
 
 namespace WebApp.DataAcces
 {
@@ -15,7 +15,7 @@ namespace WebApp.DataAcces
 
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
