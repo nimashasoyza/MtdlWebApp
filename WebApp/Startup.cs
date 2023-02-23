@@ -36,7 +36,7 @@ namespace WebApp
             //Configure DBContext with SQL
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(DbConnectionString));
 
-            services.AddSingleton<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
