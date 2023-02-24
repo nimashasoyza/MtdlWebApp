@@ -1,0 +1,17 @@
+{
+    "userRole": "Consultant",
+    "firstName": "TestConsultant-4",
+    "lastName": "TestConsultant-4",
+    "hospital": null,
+    "registrationNumber": null,
+    "address": null,
+    "address2": null,
+    "city": null,
+    "state": null,
+    "postalCode": null,
+    "mobileNumber": null,
+    "landline": null,
+
+    "userName": "TestConsultant-4",
+    "password": "TestConsultant-4"
+}

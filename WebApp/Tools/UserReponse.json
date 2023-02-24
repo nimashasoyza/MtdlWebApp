@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "userName": "Admin",
+  "password": "letmein",
+  "isActive": true,
+  "roleId": 1,
+  "firstName": "Admin",
+  "lastName": "Admin",
+  "hospital": null,
+  "registrationNumber": null,
+  "address": null,
+  "address2": null,
+  "city": null,
+  "state": null,
+  "postalCode": null,
+  "mobileNumber": null,
+  "landline": null
+}

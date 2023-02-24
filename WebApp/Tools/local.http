@@ -1,0 +1,63 @@
+@endpoint = https://localhost:5001/api
+
+@addminUserName = 'Admin'
+@adminPassword = 'letmein'
+
+### autherize
+POST {{endpoint}}/user/Authenticate
+Content-Type: application/json
+
+{
+    "userName": "Admin",
+    "password": "letmein"
+}
+
+### Register
+POST {{endpoint}}/user/Register
+Content-Type: application/json
+
+{
+    "userRole": "Consultant",
+    "firstName": "TestConsultant-4",
+    "lastName": "TestConsultant-4",
+    "hospital": null,
+    "registrationNumber": null,
+    "address": null,
+    "address2": null,
+    "city": null,
+    "state": null,
+    "postalCode": null,
+    "mobileNumber": null,
+    "landline": null,
+
+    "userName": "TestConsultant-4",
+    "password": "TestConsultant-4"
+}
+
+### Get User by Id
+GET {{endpoint}}/user/GetById?id=1
+
+### Update User
+PUT {{endpoint}}/user/Update?id=10
+Content-Type: application/json
+
+{
+    "userRole": "Consultant",
+    "firstName": "TestConsultant-4",
+    "lastName": "TestConsultant-4",
+    "hospital": "Genaral Hospital",
+    "registrationNumber": "Reg1234",
+    "address": null,
+    "address2": null,
+    "city": null,
+    "state": null,
+    "postalCode": null,
+    "mobileNumber": null,
+    "landline": null,
+
+    "userName": "TestConsultant-4",
+    "password": "TestConsultant-4"
+}
+
+### Delete User
+DELETE {{endpoint}}/user/Delete?id=10

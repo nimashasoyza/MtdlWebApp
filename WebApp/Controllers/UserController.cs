@@ -32,7 +32,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(UserRequest model)
+        public IActionResult Register([FromBody] UserRequest model)
         {
             _userService.Register(model);
             return Json(new { message = "Registration successful" });
@@ -67,9 +67,9 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult ActiveNewUsers()
+        public IActionResult ActiveNewUsers(List<int> ids)
         {
-            userService.ActiveNewUsers();
+            _userService.ActiveNewUsers(ids);
             return Json(new { message = "User activate successfully" });
         }
     }
