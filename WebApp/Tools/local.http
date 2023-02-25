@@ -18,10 +18,10 @@ Content-Type: application/json
 
 {
     "userRole": "Consultant",
-    "firstName": "TestConsultant-4",
-    "lastName": "TestConsultant-4",
-    "hospital": null,
-    "registrationNumber": null,
+    "firstName": "TestConsultant-1",
+    "lastName": "TestConsultant-1",
+    "hospital": "Genaral Hospital",
+    "registrationNumber": "Reg1234",
     "address": null,
     "address2": null,
     "city": null,
@@ -30,8 +30,8 @@ Content-Type: application/json
     "mobileNumber": null,
     "landline": null,
 
-    "userName": "TestConsultant-4",
-    "password": "TestConsultant-4"
+    "userName": "TestConsultant-1",
+    "password": "TestConsultant-1"
 }
 
 ### Get User by Id
@@ -61,3 +61,15 @@ Content-Type: application/json
 
 ### Delete User
 DELETE {{endpoint}}/user/Delete?id=10
+
+
+### Add Assignment
+POST {{endpoint}}/assignment/Add
+Content-Type: application/json
+
+{
+    "title": "Assignment-1",
+    "description": "test assignment",
+    "passMark": 100,
+    "userId": 2
+}

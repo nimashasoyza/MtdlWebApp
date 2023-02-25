@@ -2,8 +2,6 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApp.Helpers;
 using WebApp.Services;
 using WebApp.ViewModels.RequestModels;
@@ -27,6 +25,9 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Authenticate([FromBody] AuthenticateRequest model)
         {
+            if (model == null)
+                throw new Exception("request body is required");
+
             var response = _userService.Authenticate(model);
             return Json(response);
         }
@@ -34,6 +35,9 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult Register([FromBody] UserRequest model)
         {
+            if (model == null)
+                throw new Exception("request body is required");
+
             _userService.Register(model);
             return Json(new { message = "Registration successful" });
         }
@@ -48,6 +52,9 @@ namespace WebApp.Controllers
         [HttpPut]
         public IActionResult Update(int id, UserRequest model)
         {
+            if (model == null)
+                throw new Exception("request body is required");
+
             _userService.Update(id, model);
             return Json(new { message = "User updated successfully" });
         }
