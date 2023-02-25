@@ -12,5 +12,6 @@ namespace WebApp.Services
         int Add(AssignmentAddRequest assignmentAddRequest);
         List<AssigmentReponse> GetByUserId(int userId);
         void Update(AssigmentReponse assignmentUpdateRequest);
+        void Delete(int id);
     }
 }

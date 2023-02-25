@@ -1,16 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApp.Authorization;
 using WebApp.DataAcces;
 using WebApp.Helpers;
@@ -45,6 +38,7 @@ namespace WebApp
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IAssignmentService, AssignmentService>();
+            services.AddScoped<IVideoService, VideoService>();
 
         }
 

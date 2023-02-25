@@ -43,5 +43,12 @@ namespace WebApp.Controllers
             _assignmentService.Update(model);
             return Json(new { message = "Assigment updated successfully" });
         }
+
+        [HttpDelete]
+        public IActionResult Delete (int assignmentId)
+        {
+            _assignmentService.Delete(assignmentId);
+            return Json(new { message = "Assigment deleted successfully" });
+        }
     }
 }

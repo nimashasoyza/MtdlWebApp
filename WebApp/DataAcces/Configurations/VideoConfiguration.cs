@@ -23,8 +23,8 @@ namespace WebApp.DataAcces.Configurations
                 .HasColumnName("Video_Description")
                 .HasMaxLength(1000);
 
-            entity.Property(e => e.UploadPath)
-                .HasColumnName("Video_UploadPath")
+            entity.Property(e => e.UploadLink)
+                .HasColumnName("Video_Link")
                 .HasMaxLength(200);
 
             entity.Property(e => e.UserId)

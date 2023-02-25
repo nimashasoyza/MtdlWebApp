@@ -14,8 +14,8 @@ namespace WebApp.Services
 {
     public class UserService : IUserService
     {
-        private AppDbContext _context;
-        private IJwtUtils _jwtUtils;
+        private readonly AppDbContext _context;
+        private readonly IJwtUtils _jwtUtils;
 
         public UserService(AppDbContext context, IJwtUtils jwtUtils)
         {

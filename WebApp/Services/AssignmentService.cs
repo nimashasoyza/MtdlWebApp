@@ -12,13 +12,12 @@ namespace WebApp.Services
 {
     public class AssignmentService : IAssignmentService
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public AssignmentService(AppDbContext context)
         {
             _context = context;
         }
-
 
         public int Add(AssignmentAddRequest request)
         {
@@ -143,6 +142,20 @@ namespace WebApp.Services
             if (questionUpdateEntities.Any())
                 _context.UpdateRange(questionUpdateEntities);
 
+
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var assignment = _context.Assignment.Find(id);
+            if (assignment == null) throw new KeyNotFoundException("Assignment not found");
+
+            var questions = _context.Questions.Where(i => i.AssignmentId == assignment.Id).ToList();
+            if (questions != null && questions.Any())
+                _context.Questions.RemoveRange(questions);
+
+            _context.Assignment.Remove(assignment);
 
             _context.SaveChanges();
         }
