@@ -1,10 +1,11 @@
 @endpoint = https://localhost:5001/api
+@endpointhost = https://mdtlwebapp.azurewebsites.net/api
 
 @addminUserName = 'Admin'
 @adminPassword = 'letmein'
 
 ### autherize
-POST {{endpoint}}/user/Authenticate
+POST {{endpointhost}}/user/Authenticate
 Content-Type: application/json
 
 {
@@ -18,8 +19,8 @@ Content-Type: application/json
 
 {
     "userRole": "Consultant",
-    "firstName": "TestConsultant-1",
-    "lastName": "TestConsultant-1",
+    "firstName": "TestConsultant-2",
+    "lastName": "TestConsultant-2",
     "hospital": "Genaral Hospital",
     "registrationNumber": "Reg1234",
     "address": null,
@@ -30,12 +31,12 @@ Content-Type: application/json
     "mobileNumber": null,
     "landline": null,
 
-    "userName": "TestConsultant-1",
-    "password": "TestConsultant-1"
+    "userName": "TestConsultant-3",
+    "password": "TestConsultant-3"
 }
 
 ### Get User by Id
-GET {{endpoint}}/user/GetById?id=1
+GET {{endpoint}}/user/GetById?id=2
 
 ### Update User
 PUT {{endpoint}}/user/Update?id=10
@@ -68,8 +69,8 @@ POST {{endpoint}}/assignment/Add
 Content-Type: application/json
 
 {
-    "title": "Assignment-1",
-    "description": "test assignment",
+    "title": "Assignment-4",
+    "description": "test assignment 4",
     "passMark": 100,
     "userId": 2
 }
