@@ -121,12 +121,16 @@ namespace WebApp.Services
             _context.SaveChanges();
         }
 
-
-        private User GetUser(int id)
+        public List<UserRequest> GetConsultants()
         {
-            var user = _context.Users.Find(id);
-            if (user == null) throw new KeyNotFoundException("User not found");
-            return user;
+            return _context.Users.Where(i => i.RoleId == (int)UserRole.Consultant).Select(i => new UserRequest
+            {
+                FirstName = i.FirstName,
+                LastName = i.LastName,
+                Hospital = i.Hospital,
+                RegistrationNumber = i.RegistrationNumber,
+                Id = i.Id
+            }).ToList();
         }
 
         public List<UserActiveResponse> GetNewUsers()
@@ -143,6 +147,13 @@ namespace WebApp.Services
             }
             _context.Users.UpdateRange(users);
             _context.SaveChanges();
+        }
+
+        private User GetUser(int id)
+        {
+            var user = _context.Users.Find(id);
+            if (user == null) throw new KeyNotFoundException("User not found");
+            return user;
         }
 
         private UserRole GetUserRoleEnum(string description)
@@ -163,5 +174,7 @@ namespace WebApp.Services
             var descriptionAttributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
             return descriptionAttributes.Length > 0 ? descriptionAttributes[0].Description : enumValue.ToString();
         }
+
+        
     }
 }

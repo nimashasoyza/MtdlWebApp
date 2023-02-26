@@ -14,5 +14,6 @@ namespace WebApp.Services
         void Delete(int id);
         List<UserActiveResponse> GetNewUsers();
         void ActiveNewUsers(List<int> ids);
+        List<UserRequest> GetConsultants();
     }
 }
