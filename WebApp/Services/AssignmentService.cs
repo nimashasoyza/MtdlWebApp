@@ -159,5 +159,61 @@ namespace WebApp.Services
 
             _context.SaveChanges();
         }
+
+        public CheckResultsResponse CheckResults(CheckResultRequest checkResultRequest)
+        {
+            var assignment = _context.Assignment.Find(checkResultRequest.AssignmentId);
+            if (assignment == null) throw new KeyNotFoundException("Assignment not found");
+
+            if (checkResultRequest.Answers != null && checkResultRequest.Answers.Any())
+            {
+                int correctAnswerCount = 0;
+                foreach (var item in checkResultRequest.Answers)
+                {
+                    var questionEntity = _context.Questions.FirstOrDefault(i => i.Id == item.QuestionId);
+                    if (questionEntity != null)
+                    {
+                        var correctAnswer = questionEntity.TrueAnswer;
+                        if (correctAnswer.Trim().ToLower() == item.Answer?.Trim().ToLower())
+                        {
+                            correctAnswerCount++;
+                        }
+                    }
+                }
+
+                var marks = (int)(((decimal)correctAnswerCount / (decimal)checkResultRequest.Answers.Count) * 100);
+
+                Results results = new Results
+                {
+                    AssignmentId = checkResultRequest.AssignmentId,
+                    StudentId = checkResultRequest.UserId,
+                    PassMark = assignment.PassMark,
+                    Marks = marks
+                };
+
+                _context.Results.Add(results);
+                _context.SaveChanges();
+
+                return new CheckResultsResponse
+                {
+                    UserId = checkResultRequest.UserId,
+                    AssignmentId = checkResultRequest.AssignmentId,
+                    PassMark = assignment.PassMark,
+                    Marks = marks
+                };
+            }
+            return new CheckResultsResponse();
+        }
+
+        public List<CheckResultsResponse> GetResults(int userId)
+        {
+            return _context.Results.Where(i => i.StudentId == userId).Select(i => new CheckResultsResponse
+            {
+                AssignmentId = i.AssignmentId,
+                PassMark = i.PassMark,
+                Marks = i.Marks,
+                UserId = i.StudentId
+            }).ToList();
+        }
     }
 }

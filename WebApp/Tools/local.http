@@ -13,14 +13,23 @@ Content-Type: application/json
     "password": "letmein"
 }
 
+### Response
+{
+  "id": 1,
+  "firstName": "Superviser",
+  "lastName": "Superviser",
+  "username": "Admin",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYmYiOjE2NzczOTg3NDYsImV4cCI6MTY3NzQwMjM0NiwiaWF0IjoxNjc3Mzk4NzQ2fQ.MoJ4SkYZqNTDVYj4N_PkFXE6V990Sn5dEmNk86hiWwo"
+}
+
 ### Register
-POST {{endpoint}}/user/Register
+POST {{endpointhost}}/user/Register
 Content-Type: application/json
 
 {
-    "userRole": "Consultant",
-    "firstName": "TestConsultant-2",
-    "lastName": "TestConsultant-2",
+    "userRole": "Student",
+    "firstName": "TestStudent-1",
+    "lastName": "TestStudent-1",
     "hospital": "Genaral Hospital",
     "registrationNumber": "Reg1234",
     "address": null,
@@ -31,15 +40,35 @@ Content-Type: application/json
     "mobileNumber": null,
     "landline": null,
 
-    "userName": "TestConsultant-3",
-    "password": "TestConsultant-3"
+    "userName": "TestStudent-1",
+    "password": "TestStudent-1"
 }
 
 ### Get User by Id
-GET {{endpoint}}/user/GetById?id=2
+GET {{endpointhost}}/user/GetById?id=2
+
+### Response
+{
+  "id": 2,
+  "userName": "TestConsultant-1",
+  "password": "TestConsultant-1",
+  "isActive": false,
+  "roleId": 2,
+  "firstName": "TestConsultant-1",
+  "lastName": "TestConsultant-1",
+  "hospital": "Genaral Hospital",
+  "registrationNumber": "Reg1234",
+  "address": null,
+  "address2": null,
+  "city": null,
+  "state": null,
+  "postalCode": null,
+  "mobileNumber": null,
+  "landline": null
+}
 
 ### Update User
-PUT {{endpoint}}/user/Update?id=10
+PUT {{endpointhost}}/user/Update?id=10
 Content-Type: application/json
 
 {
@@ -61,16 +90,224 @@ Content-Type: application/json
 }
 
 ### Delete User
-DELETE {{endpoint}}/user/Delete?id=10
+DELETE {{endpointhost}}/user/Delete?id=10
 
 
 ### Add Assignment
-POST {{endpoint}}/assignment/Add
+POST {{endpointhost}}/assignment/Add
 Content-Type: application/json
 
 {
-    "title": "Assignment-4",
-    "description": "test assignment 4",
+    "title": "Assignment-5",
+    "description": "test assignment 5",
     "passMark": 100,
+    "userId": 3
+}
+
+### Get Assigments by user
+GET {{endpointhost}}/assignment/GetByUserId?userId=2
+
+### Reponse
+
+[
+  {
+    "id": 1,
+    "title": "Assignment-1",
+    "description": "test assignment",
+    "passMark": 100,
+    "userId": 2,
+    "videoId": 0,
+    "questionaire": [
+      {
+        "id": 1,
+        "question": "Test Q1",
+        "trueAnswer": "Q1 - Test Answer 1",
+        "falseAnswer1": "Q1 - Test Answer 2",
+        "falseAnswer2": "Q1 - Test Answer 3",
+        "falseAnswer3": "Q1 - Test Answer 4"
+      },
+      {
+        "id": 2,
+        "question": "Test Q2",
+        "trueAnswer": "Q2 - Test Answer 1",
+        "falseAnswer1": "Q2 - Test Answer 2",
+        "falseAnswer2": "Q2 - Test Answer 3",
+        "falseAnswer3": "Q2 - Test Answer 4"
+      },
+      {
+        "id": 3,
+        "question": "Test Q3",
+        "trueAnswer": "Q3 - Test Answer 1",
+        "falseAnswer1": "Q3 - Test Answer 2",
+        "falseAnswer2": "Q3 - Test Answer 3",
+        "falseAnswer3": "Q3 - Test Answer 4"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Assignment-2",
+    "description": "test assignment 2",
+    "passMark": 100,
+    "userId": 2,
+    "videoId": 0,
+    "questionaire": null
+  }
+]
+
+
+### Update Assignment with video or questionaire
+PUT {{endpointhost}}/assignment/Update
+Content-Type: application/json
+
+{
+    "id": 1,
+    "title": "Assignment-1",
+    "description": "test assignment",
+    "passMark": 100,
+    "userId": 2,
+    "videoId": 0,
+    "questionaire": [
+        {
+            "Question": "Test Q1",
+            "TrueAnswer": "Q1 - Test Answer 1",
+            "FalseAnswer1": "Q1 - Test Answer 2",
+            "FalseAnswer2": "Q1 - Test Answer 3",
+            "FalseAnswer3": "Q1 - Test Answer 4"
+        },
+        {
+            "Question": "Test Q2",
+            "TrueAnswer": "Q2 - Test Answer 1",
+            "FalseAnswer1": "Q2 - Test Answer 2",
+            "FalseAnswer2": "Q2 - Test Answer 3",
+            "FalseAnswer3": "Q2 - Test Answer 4"
+        },
+        {
+           "Question": "Test Q3",
+            "TrueAnswer": "Q3 - Test Answer 1",
+            "FalseAnswer1": "Q3 - Test Answer 2",
+            "FalseAnswer2": "Q3 - Test Answer 3",
+            "FalseAnswer3": "Q3 - Test Answer 4"
+        }
+        
+    ]
+}
+
+### Delete Assigment
+DELETE {{endpointhost}}/assignment/Delete?id=5
+
+### Add Video
+POST {{endpointhost}}/video/Add
+Content-Type: application/json
+
+{
+    "title": "Wounds",
+    "description": "By Dr. Jeorge Samarasekara ",
+    "videoLink": "https://youtu.be/sNS67ZJQVDA",
     "userId": 2
 }
+
+### Get Videos by User
+GET {{endpointhost}}/video/GetByUser?userId=2
+
+### Response
+
+[
+  {
+    "id": 1,
+    "title": "Wounds",
+    "description": "By Dr. Jeorge Samarasekara ",
+    "videoLink": "https://youtu.be/sNS67ZJQVDA",
+    "userId": 2
+  },
+  {
+    "id": 2,
+    "title": "Wounds",
+    "description": "By Dr. Jeorge Samarasekara ",
+    "videoLink": "https://youtu.be/sNS67ZJQVDA",
+    "userId": 2
+  },
+  {
+    "id": 3,
+    "title": "Wounds",
+    "description": "By Dr. Jeorge Samarasekara ",
+    "videoLink": "https://youtu.be/sNS67ZJQVDA",
+    "userId": 2
+  },
+  {
+    "id": 4,
+    "title": "Wounds",
+    "description": "By Dr. Jeorge Samarasekara ",
+    "videoLink": "https://youtu.be/sNS67ZJQVDA",
+    "userId": 2
+  }
+]
+
+### Update video information
+PUT {{endpointhost}}/video/Update
+Content-Type: application/json
+
+{
+    "id": 4,
+    "title": "Wounds",
+    "description": "By Dr. Alex Perera ",
+    "videoLink": "https://youtu.be/sNS67ZJQVDA",
+    "userId": 3
+}
+
+### Delete Video Record
+DELETE {{endpointhost}}/video/Delete?videoId=3
+
+### Check Results
+POST  {{endpoint}}/assignment/CheckResult
+Content-Type: application/json
+
+{
+    "userId": 5,
+    "assignmentId": 1,
+    "answers": [
+        {
+            "questionId": 1,
+            "question": "Test Q1",
+            "answer": "Q1 - Test Answer 1"
+        },
+        {
+            "questionId": 2,
+            "question": "Test Q2",
+            "answer": "Q2 - Test Answer 2"
+        }
+    ]
+}
+
+### Response
+{
+  "assignmentId": 1,
+  "userId": 5,
+  "passMark": 100,
+  "marks": 50
+}
+
+### Get Results by students
+GEt  {{endpoint}}/assignment/GetResult?userId=5
+  
+### Response
+[
+  {
+    "assignmentId": 1,
+    "userId": 5,
+    "passMark": 100,
+    "marks": 1
+  },
+  {
+    "assignmentId": 1,
+    "userId": 5,
+    "passMark": 100,
+    "marks": 0
+  },
+  {
+    "assignmentId": 1,
+    "userId": 5,
+    "passMark": 100,
+    "marks": 50
+  }
+]

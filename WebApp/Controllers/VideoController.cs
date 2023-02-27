@@ -41,7 +41,7 @@ namespace WebApp.Controllers
                 throw new Exception("request body is required");
 
             _videoService.Update(model);
-            return Json(new { message = "Assigment updated successfully" });
+            return Json(new { message = "Video record updated successfully" });
         }
 
         [HttpDelete]

@@ -71,7 +71,7 @@ namespace WebApp.Services
                 PostalCode = model.PostalCode,
                 MobileNumber = model.MobileNumber,
                 Landline = model.Landline,
-                RoleId = (int)GetUserRoleEnum(model.UserRole)
+                RoleId = model.UserRole
             };
 
             //=====To Do====

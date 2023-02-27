@@ -12,6 +12,7 @@ namespace WebApp.DataAcces
         public DbSet<Assignment> Assignment { get; set; }
         public DbSet<Questions> Questions { get; set; }
         public DbSet<Video> TrainingVideo { get; set; }
+        public DbSet<Results> Results { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +20,7 @@ namespace WebApp.DataAcces
             modelBuilder.ApplyConfiguration(new AssignmentConfiguration());
             modelBuilder.ApplyConfiguration(new QuestionsConfiguration());
             modelBuilder.ApplyConfiguration(new VideoConfiguration());
+            modelBuilder.ApplyConfiguration(new ResultsConfiguration());
         }
     }
 }

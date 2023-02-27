@@ -50,5 +50,22 @@ namespace WebApp.Controllers
             _assignmentService.Delete(assignmentId);
             return Json(new { message = "Assigment deleted successfully" });
         }
+
+        [HttpPost]
+        public IActionResult CheckResult([FromBody] CheckResultRequest model)
+        {
+            if (model == null)
+                throw new Exception("request body is required");
+
+            var response = _assignmentService.CheckResults(model);
+            return Json(response);
+        }
+
+        [HttpGet]
+        public IActionResult GetResult(int userId)
+        {
+            var response = _assignmentService.GetResults(userId);
+            return Json(response);
+        }
     }
 }

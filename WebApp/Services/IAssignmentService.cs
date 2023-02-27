@@ -13,5 +13,8 @@ namespace WebApp.Services
         List<AssigmentReponse> GetByUserId(int userId);
         void Update(AssigmentReponse assignmentUpdateRequest);
         void Delete(int id);
+        CheckResultsResponse CheckResults(CheckResultRequest checkResultRequest);
+        List<CheckResultsResponse> GetResults(int userId);
+
     }
 }
